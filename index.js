@@ -1,3 +1,4 @@
+require('dotenv').config();
 //                       _oo0oo_
 //                      o8888888o
 //                      88" . "88
@@ -19,7 +20,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-
+const port = process.env.PORT  || 3001;
 // Syncing all the models at once.
 /*server.listen(3001, () => {
   console.log('%s listening at 3001'); // eslint-disable-line no-console
@@ -29,8 +30,8 @@ const { conn } = require('./src/db.js');
 //Usamos force para no drope
 
 conn.sync({ alter: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  server.listen(port, () => {
+    console.log(`%s listening at ${port}`); // eslint-disable-line no-console
   });
 });
 
